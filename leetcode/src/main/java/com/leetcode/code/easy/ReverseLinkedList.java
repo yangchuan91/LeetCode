@@ -34,18 +34,17 @@ public class ReverseLinkedList {
 		if(head==null){
 			return null;
 		}
-		int count=0;
-		//ListNode newNode=new ListNode(head.val);
-		ListNode tmp;
-		while(head!=null){
-			tmp=head;
-			if(count==0){
-				
-			}
-			tmp=head.next;
-			//result=result.next;
+		ListNode n1,n2,n3;
+		n1=head;
+		n2=n1.next;
+		while(n2!=null){
+			n3=n2.next;
+			n2.next=n1;
+			n1=n2;
+			n2=n3;
 		}
-		return head;
+		head.next=null;
+		return n1;
 	}
 
 	public class ListNode {
