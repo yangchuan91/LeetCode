@@ -1,0 +1,19 @@
+
+总计有3个解：A这个解速率最慢    B C解都是连表查询出来的,只是写的方式不一样
+
+A.
+SELECT y.Name FROM(
+SELECT  a.Id as Id ,a.Name as Name,a.Salary as Salary,a.ManagerId as ManagerId 
+From employee a 
+)y
+where y.Salary > (SELECT b.Salary FROM employee b WHERE b.Id=y.ManagerId)
+
+B.
+SELECT  a.Name as Name
+From Employee a ,Employee b 
+where a.ManagerId=b.Id and a.Salary>b.Salary
+
+C.
+SELECT  a.Name as Name
+From Employee a inner join Employee b 
+where a.ManagerId=b.Id and a.Salary>b.Salary
